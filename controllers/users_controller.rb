@@ -1,5 +1,4 @@
 get "/users" do
-  
   erb :"users/show"
 end
 
@@ -45,7 +44,3 @@ get "/users/:id" do
   @user = User.find(params["id"])
   erb :"users/single_user"
 end
-
-# get /users/:id/edit
-#post /users/id/edit
-#get /users/id
