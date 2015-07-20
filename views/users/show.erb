@@ -2,5 +2,6 @@
   <li><%= user.email %>  <% if user.id == @user.id %><a href="/delete_profile">Delete</a>  <a href="/edit_profile">Edit</a><% end %></li>
 <% end %></ul>
 
-
-<a href="/new_user">Create a new user?</a>
+<% if @user.id.nil? %>
+  <a href="/new_user">Create a new user?</a>
+<% end %>

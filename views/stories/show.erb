@@ -2,6 +2,6 @@
   <li><%= story.name %>  <% if @user.id == session[:id] %> <a href="/delete_story/<%= story.id%>">Delete</a>  <a href="/edit_story/<%= story.id%>">Edit</a> <% end %></li>
 <% end %></ul>
 
-<% if @user.id != "" %>
+<% if @user.id == session[:id] %>
   <a href="/new_story">Add a new story?</a>
 <% end %>
