@@ -23,31 +23,48 @@ end
 get "/stories/delete/:id" do
   current_user
   @story = Story.find(params["id"])
-  erb :"stories/delete_story"
+  if @user.id == @story.user_id
+    erb :"stories/delete_story"
+  else
+    redirect "/users/#{@user.id}/stories"
+  end
 end
 
 delete "/stories/:id" do
   current_user
-  if Story.delete(params["id"])
-    return "Success."
+  @story = Story.find(params["id"])
+  if @user.id == @story.user_id
+    if @story.delete
+      return "Success."
+    else
+      return "Failed."
+    end
   else
-    return "Failed."
+    redirect "/users/#{@user.id}/stories"
   end
 end
 
 get "/stories/:id/edit" do
   current_user
   @story = Story.find(params["id"])
-  erb :"stories/edit_story"
+  if @user.id == @story.user_id
+    erb :"stories/edit_story"
+  else
+    redirect "/users/#{@user.id}/stories"
+  end
 end
 
 put "/stories/:id" do
   current_user
   @story = Story.find(params["stories"]["id"])
-  if @story.update(params["stories"])
-    redirect "users/#{@user.id}/stories/#{@story.id}"
+  if @user.id == @story.user_id
+    if @story.update(params["stories"])
+      redirect "users/#{@user.id}/stories/#{@story.id}"
+    else
+      erb :"stories/edit_story"
+    end
   else
-    erb :"stories/edit_story"
+    redirect "/users/#{@user.id}/stories"
   end
 end
 
