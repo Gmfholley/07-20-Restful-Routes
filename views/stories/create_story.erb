@@ -5,7 +5,7 @@
 </ul>
 
 <form action="/users/<%=@user.id%>/stories" method="post">
-  <input type="text" name="stories[name]" placeholder="Type in the story's name"></input>
+  <input type="text" name="stories[name]" placeholder="Type in the story's name" value="<%=@story.name%>"></input>
   <input type="hidden" name="stories[user_id]" value="<%= @user.id%>"></input>
   <input type="submit"></input>
 </form>

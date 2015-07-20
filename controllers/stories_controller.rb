@@ -11,10 +11,13 @@ get "/users/:id/stories/new" do
 end
 
 post "/users/:id/stories" do
-  binding.pry
-  @story = Story.create(params["stories"])
+  @story = Story.new(params["stories"])
   @user = User.find(params["id"])
-  redirect "/users/#{@user.id}/stories/#{@story.id}"
+  if @story.save
+    redirect "/users/#{@user.id}/stories/#{@story.id}"
+  else
+    erb :"stories/create_story"
+  end
 end
 
 get "/users/:user_id/stories/delete/:id" do

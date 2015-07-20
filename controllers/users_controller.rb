@@ -9,8 +9,12 @@ get "/users/new" do
 end
 
 post "/users" do
-  @user = User.create(params["users"])
-  redirect "/users/#{@user.id}"
+  @user = User.new(params["users"])
+  if @user.save
+    redirect "/users/#{@user.id}"
+  else
+    erb :"users/create_user"
+  end
 end
 
 get "/users/delete/:id" do
