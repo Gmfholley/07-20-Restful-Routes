@@ -37,10 +37,19 @@ unless ActiveRecord::Base.connection.table_exists?(:users)
   end  
 end
 
+unless ActiveRecord::Base.connection.table_exists?(:stories)
+  ActiveRecord::Base.connection.create_table :stories do |t|
+    t.text :name
+    t.integer :user_id
+  end  
+end
+
 require_relative 'models/user.rb'
+require_relative 'models/story.rb'
 
 
 require_relative 'controllers/users_controller.rb'
+require_relative 'controllers/stories_controller.rb'
 
 
 
