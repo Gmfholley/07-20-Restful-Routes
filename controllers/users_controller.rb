@@ -11,7 +11,6 @@ end
 
 post "/users" do
   @user = User.create(params["users"])
-  
   redirect "/users/#{@user.id}"
 end
 
@@ -28,12 +27,24 @@ delete "/users/:id" do
   end
 end
 
+get "/users/:id/edit" do
+  @user = User.find(params["id"])
+  erb :"users/edit_user"
+end
+
+post "/users/:id/edit" do
+  @user = User.find(params["users"]["id"])
+  if @user.update(params["users"])
+    redirect "/users/#{@user.id}"
+  else
+    erb :"users/edit_user"
+  end
+end
+
 get "/users/:id" do
   erb :"users/test"
 end
 
-# post users
-# delete users/:id
 # get /users/:id/edit
 #post /users/id/edit
 #get /users/id
