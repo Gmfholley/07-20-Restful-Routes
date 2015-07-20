@@ -37,7 +37,10 @@ unless ActiveRecord::Base.connection.table_exists?(:users)
   end  
 end
 
-binding.pry
+require_relative 'models/user.rb'
+
+
+require_relative 'controllers/users_controller.rb'
 
 
 
