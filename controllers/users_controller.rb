@@ -32,7 +32,7 @@ get "/users/:id/edit" do
   erb :"users/edit_user"
 end
 
-post "/users/:id/edit" do
+put "/users/:id/edit" do
   @user = User.find(params["users"]["id"])
   if @user.update(params["users"])
     redirect "/users/#{@user.id}"
@@ -42,7 +42,8 @@ post "/users/:id/edit" do
 end
 
 get "/users/:id" do
-  erb :"users/test"
+  @user = User.find(params["id"])
+  erb :"users/single_user"
 end
 
 # get /users/:id/edit
