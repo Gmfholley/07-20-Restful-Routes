@@ -4,15 +4,15 @@ get "/users/:id/stories" do
 end
 
 
-get "/users/:id/stories/new" do
+get "/stories/new" do
+  current_user
   @story = Story.new
-  @user = User.find(params["id"])
   erb :"stories/create_story"
 end
 
-post "/users/:id/stories" do
+post "/stories" do
+  current_user
   @story = Story.new(params["stories"])
-  @user = User.find(params["id"])
   if @story.save
     redirect "/users/#{@user.id}/stories/#{@story.id}"
   else
@@ -20,14 +20,14 @@ post "/users/:id/stories" do
   end
 end
 
-get "/users/:user_id/stories/delete/:id" do
+get "/stories/delete/:id" do
+  current_user
   @story = Story.find(params["id"])
-  @user = User.find(params["user_id"])
   erb :"stories/delete_story"
 end
 
-delete "/users/:user_id/stories/:id" do
-  @user = User.find(params["user_id"])
+delete "/stories/:id" do
+  current_user
   if Story.delete(params["id"])
     return "Success."
   else
@@ -35,14 +35,14 @@ delete "/users/:user_id/stories/:id" do
   end
 end
 
-get "/users/:user_id/stories/:id/edit" do
-  @user = User.find(params["user_id"])
+get "/stories/:id/edit" do
+  current_user
   @story = Story.find(params["id"])
   erb :"stories/edit_story"
 end
 
-put "/users/:user_id/stories/:id" do
-  @user = User.find(params["user_id"])
+put "/stories/:id" do
+  current_user
   @story = Story.find(params["stories"]["id"])
   if @story.update(params["stories"])
     redirect "users/#{@user.id}/stories/#{@story.id}"

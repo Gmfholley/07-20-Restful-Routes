@@ -52,5 +52,5 @@ require_relative 'controllers/login_helper.rb'
 require_relative 'controllers/users_controller.rb'
 require_relative 'controllers/stories_controller.rb'
 
-
+set :sessions, true
 helpers LoginHelper

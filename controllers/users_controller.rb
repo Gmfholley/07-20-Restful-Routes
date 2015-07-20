@@ -5,6 +5,11 @@ get "/" do
 end
 
 get "/users" do
+  if session["id"]
+    @user = User.find(session["id"])
+  else
+    @user = User.new
+  end
   erb :"users/show"
 end
 
