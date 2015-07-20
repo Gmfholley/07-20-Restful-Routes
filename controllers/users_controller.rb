@@ -15,6 +15,11 @@ post "/users" do
   redirect "/users/#{@user.id}"
 end
 
+get "/users/delete/:id" do
+  @user = User.find(params["id"])
+  erb :"users/delete_user"
+end
+
 delete "/users/:id" do
   if User.delete(params["id"])
     return "Success."
