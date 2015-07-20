@@ -35,7 +35,7 @@ get "/users/:id/edit" do
   erb :"users/edit_user"
 end
 
-put "/users/:id/edit" do
+put "/users/:id" do
   @user = User.find(params["users"]["id"])
   if @user.update(params["users"])
     redirect "/users/#{@user.id}"

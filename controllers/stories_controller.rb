@@ -41,7 +41,7 @@ get "/users/:user_id/stories/:id/edit" do
   erb :"stories/edit_story"
 end
 
-put "/users/:user_id/stories/:id/edit" do
+put "/users/:user_id/stories/:id" do
   @user = User.find(params["user_id"])
   @story = Story.find(params["stories"]["id"])
   if @story.update(params["stories"])
