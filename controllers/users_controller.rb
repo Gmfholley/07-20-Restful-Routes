@@ -13,12 +13,12 @@ get "/users" do
   erb :"users/show"
 end
 
-get "/users/new" do
+get "/new_user" do
   @user = User.new  
   erb :"users/create_user"
 end
 
-post "/users" do
+post "/new_user" do
   params["users"]["password"] = BCrypt::Password.create(params["users"]["password"])
   @user = User.new(params["users"])
   if @user.valid?
@@ -40,7 +40,7 @@ post "/users/login" do
   end
 end
 
-get "/users/delete" do
+get "/delete_profile" do
   current_user
   erb :"users/delete_user"
 end
@@ -54,7 +54,7 @@ delete "/users" do
   end
 end
 
-get "/users/edit" do
+get "/edit_profile" do
   current_user
   erb :"users/edit_user"
 end

@@ -4,13 +4,13 @@ get "/users/:id/stories" do
 end
 
 
-get "/stories/new" do
+get "/new_story" do
   current_user
   @story = Story.new
   erb :"stories/create_story"
 end
 
-post "/stories" do
+post "/new_story" do
   current_user
   @story = Story.new(params["stories"])
   if @story.save
@@ -20,7 +20,7 @@ post "/stories" do
   end
 end
 
-get "/stories/delete/:id" do
+get "/delete_story/:id" do
   current_user
   @story = Story.find(params["id"])
   if @user.id == @story.user_id
@@ -30,7 +30,7 @@ get "/stories/delete/:id" do
   end
 end
 
-delete "/stories/:id" do
+delete "/delete_story/:id" do
   current_user
   @story = Story.find(params["id"])
   if @user.id == @story.user_id
@@ -44,7 +44,7 @@ delete "/stories/:id" do
   end
 end
 
-get "/stories/:id/edit" do
+get "/edit_story/:id" do
   current_user
   @story = Story.find(params["id"])
   if @user.id == @story.user_id
@@ -54,7 +54,7 @@ get "/stories/:id/edit" do
   end
 end
 
-put "/stories/:id" do
+put "/edit_story/:id" do
   current_user
   @story = Story.find(params["stories"]["id"])
   if @user.id == @story.user_id

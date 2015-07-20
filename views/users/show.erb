@@ -1,3 +1,6 @@
 <ul><% User.all.each do |user| %>
-  <li><%= user.email %>  <% if user.id == @user.id %><a href="/users/delete">Delete</a>  <a href="/users/edit">Edit</a><% end %></li>
+  <li><%= user.email %>  <% if user.id == @user.id %><a href="/delete_profile">Delete</a>  <a href="/edit_profile">Edit</a><% end %></li>
 <% end %></ul>
+
+
+<a href="/new_user">Create a new user?</a>
