@@ -35,26 +35,27 @@ post "/users/login" do
   end
 end
 
-get "/users/delete/:id" do
-  @user = User.find(params["id"])
+get "/users/delete" do
+  current_user
   erb :"users/delete_user"
 end
 
-delete "/users/:id" do
-  if User.delete(params["id"])
-    return "Success."
+delete "/users" do
+  current_user
+  if @user.delete(params["id"])
+    redirect "/"
   else
-    return "Failed."
+    erb :"users/delete_user"
   end
 end
 
-get "/users/:id/edit" do
-  @user = User.find(params["id"])
+get "/users/edit" do
+  current_user
   erb :"users/edit_user"
 end
 
-put "/users/:id" do
-  @user = User.find(params["users"]["id"])
+put "/users" do
+  current_user
   if @user.update(params["users"])
     redirect "/users/#{@user.id}"
   else

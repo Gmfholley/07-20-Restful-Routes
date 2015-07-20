@@ -1,3 +1,3 @@
 <ul><% User.all.each do |user| %>
-  <li><%= user.email %>  <a href="/users/delete/<%= user.id%>">Delete</a>  <a href="/users/<%= user.id%>/edit">Edit</a></li>
+  <li><%= user.email %>  <% if user.id == @user.id %><a href="/users/delete">Delete</a>  <a href="/users/edit">Edit</a><% end %></li>
 <% end %></ul>
