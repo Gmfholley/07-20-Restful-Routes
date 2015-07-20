@@ -12,3 +12,4 @@ gem "bcrypt"
 gem 'sqlite3', '1.3.10' , :groups => [:development, :test]
 gem 'pg', :groups => [:production]
 
+
