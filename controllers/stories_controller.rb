@@ -42,7 +42,7 @@ put "/users/:user_id/stories/:id/edit" do
   @user = User.find(params["user_id"])
   @story = Story.find(params["stories"]["id"])
   if @story.update(params["stories"])
-    redirect "/stories/#{@story.id}"
+    redirect "users/#{@user.id}/stories/#{@story.id}"
   else
     erb :"stories/edit_story"
   end
