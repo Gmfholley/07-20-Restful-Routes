@@ -1,3 +1,3 @@
 <ul><% Story.where({"user_id" => @user.id}).each do |story| %>
-  <li><%= story.name %>  <a href="/users/<%=@user.id%>/stories/delete/<%= story.id%>">Delete</a>  <a href="/users/<%=@user.id%>/stories/<%= story.id%>/edit">Edit</a></li>
+  <li><%= story.name %>  <% if @user.id == session[:id] %> <a href="/users/<%=@user.id%>/stories/delete/<%= story.id%>">Delete</a>  <a href="/users/<%=@user.id%>/stories/<%= story.id%>/edit">Edit</a> <% end %></li>
 <% end %></ul>

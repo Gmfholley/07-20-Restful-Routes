@@ -1,3 +1,5 @@
 <p>Welcome, <%= @story.name %>!</p>
 
+<p>This story belongs to <%= User.find(@story.user_id).email %></p>
+
 <p>We plan to have more for you later.</p>
