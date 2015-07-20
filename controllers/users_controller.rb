@@ -1,5 +1,6 @@
 get "/" do
   session[:id] = nil
+  @user = User.new
   erb :"users/login"
 end
 
