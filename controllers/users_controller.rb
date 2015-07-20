@@ -1,19 +1,36 @@
+get "/" do
+  session[:id] = nil
+  erb :"users/login"
+end
+
 get "/users" do
   erb :"users/show"
 end
 
-
 get "/users/new" do
-  @user = User.new
+  @user = User.new  
   erb :"users/create_user"
 end
 
 post "/users" do
+  params["users"]["password"] = BCrypt::Password.create(params["users"]["password"])
   @user = User.new(params["users"])
-  if @user.save
+  if user.valid?
+    user.save
+    session[:id] = user.id
     redirect "/users/#{@user.id}"
   else
     erb :"users/create_user"
+  end
+end
+
+post "/users/login" do
+  @user = User.where("email" => params["users"]["email"]).first
+  if @user.valid? && @user.valid_password?(params["users"]["password"])
+    session[:id] = @user.id
+    redirect "/users/#{@user.id}"
+  else
+    erb :"users/login"
   end
 end
 
