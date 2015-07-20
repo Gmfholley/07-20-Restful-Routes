@@ -6,6 +6,7 @@
 
 <form action="/users/<%= @user.id %>/edit" method="post">
   <input type="hidden" name="users[id]" value="<%= @user.id %>"></input>
+  <input type="hidden" name="_method" value="put"></input>
   <input type="text" name="users[email]" placeholder="Type in your email." value="<%= @user.email %>"></input>
   <input type="password" name="users[password]" placeholder="Type in your password."></input>
   <input type="submit"></input>
