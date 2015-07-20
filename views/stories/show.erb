@@ -1,3 +1,3 @@
-<ul><% User.all.each do |user| %>
-  <li><%= user.email %>  <a href="/users/delete/<%= user.id%>">Delete</a>  <a href="/users/<%= user.id%>/edit">Edit</a></li>
+<ul><% Story.where({"user_id" => @user.id}).each do |story| %>
+  <li><%= story.name %>  <a href="/stories/delete/<%= story.id%>">Delete</a>  <a href="/stories/<%= story.id%>/edit">Edit</a></li>
 <% end %></ul>

@@ -1,13 +1,13 @@
 <ul>
-  <% @user.errors.full_messages.each do |error| %>
+  <% @story.errors.full_messages.each do |error| %>
     <li><%= error %></li>
   <% end %>
 </ul>
 
-<form action="/users/<%= @user.id %>/edit" method="post">
-  <input type="hidden" name="users[id]" value="<%= @user.id %>"></input>
+<form action="/stories/<%= @story.id %>/edit" method="post">
+  <input type="hidden" name="stories[id]" value="<%= @story.id %>"></input>
   <input type="hidden" name="_method" value="put"></input>
-  <input type="text" name="users[email]" placeholder="Type in your email." value="<%= @user.email %>"></input>
-  <input type="password" name="users[password]" placeholder="Type in your password."></input>
+  <input type="text" name="stories[name]" placeholder="Type in the story's name" value="<%= @story.name %>"></input>
+  <input type="hidden" name="stories[user_id]" value ="<%= @story.user_id%>"></input>
   <input type="submit"></input>
 </form>
